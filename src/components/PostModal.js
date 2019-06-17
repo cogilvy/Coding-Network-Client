@@ -4,6 +4,17 @@ import TimeAgo from 'timeago-react';
 
 class PostModal extends Component {
 
+  state = {
+    commentsOnThisPost: []
+  }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     post:
+  //     commentsOnThisPost:
+  //   })
+  // }
+
   render() {
     return (
       <div className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -45,8 +56,26 @@ class PostModal extends Component {
                             </div>
                             <div className="media-body">
 
+<<<<<<< HEAD
                             </div>
                           </div>
+=======
+                                   </div>
+                                   <div class="comment">
+                                        <div class="media">
+                                          <div class="media-left">
+                                            <a href="#">
+                                              <img class="media-object photo-profile" src="http://0.gravatar.com/avatar/38d618563e55e6082adf4c8f8c13f3e4?s=40&d=mm&r=g" width="32" height="32" alt="..."/>
+                                            </a>
+                                          </div>
+                                          <div class="media-body">
+                                            <NewCommentForm post={this.props.post} currentUser={this.props.currentUser} addNewComment={this.props.addNewComment}/>
+                                          </div>
+                                        </div>
+                                  </div>
+                                </div>
+                           </section>
+>>>>>>> implementing-comments-frontend
                         </div>
                       </div>
                       <div className="post-user" style={this.h3Style}>

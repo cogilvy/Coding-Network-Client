@@ -16,8 +16,8 @@ class Signup extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    // fetch("http://localhost:3000/api/v1/users", {
-    fetch("https://threes-nutz-backend.herokuapp.com/api/v1/users", {
+    fetch("http://localhost:3000/api/v1/users", {
+    // fetch("https://threes-nutz-backend.herokuapp.com/api/v1/users", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

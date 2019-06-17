@@ -8,18 +8,31 @@ import NewPostForm from '../components/NewPostForm'
 class PostContainer extends Component {
 
   state = {
-    posts: [1]
+    posts: [1],
+    postToModalize: {},
+    commentsOnThisPost: []
   }
   // https://threes-nutz-backend.herokuapp.com/api/v1/
 
   componentDidMount() {
-    // fetch(`http://localhost:3000/api/v1/posts`)
-    fetch(`https://threes-nutz-backend.herokuapp.com/api/v1/posts`)
+    fetch(`http://localhost:3000/api/v1/posts`)
+    // fetch(`https://threes-nutz-backend.herokuapp.com/api/v1/posts`)
     .then(res => res.json())
     .then(data => {
       this.setState({
         posts: data
       })
+    })
+  }
+
+  handleModalClick = (post) => {
+    // this.props.setPostObjToView(post)
+  }
+
+  viewSinglePost = (postObj) => {
+    this.setState({
+      postToModalize: postObj,
+      commentsOnThisPost: postObj.comments
     })
   }
 
@@ -31,8 +44,6 @@ class PostContainer extends Component {
           this.props.isCreatingNewPost ?
           <NewPostForm currentUser={this.props.currentUser} createNewPost={this.props.createNewPost}/>
           :
-
-
         <div className="post-container">
           {
             this.state.posts === [1] ?
@@ -42,7 +53,7 @@ class PostContainer extends Component {
               return (
                 <Fragment>
                   <Post key={post.id} post={post} />
-                  <PostModal post={post}/>
+                  <PostModal  postObjToView={this.props.postObjToView}  currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} post={post}/>
                 </Fragment>
               )
             })

@@ -52,14 +52,14 @@
 
 .single-post {
   display: block;
-  overflow: hidden;
+  overflow: scroll;
   text-align: left;
   box-shadow: 6px 6px 3px #8387d461;
   margin: 0 auto;
   margin-top: 25px;
   padding: 25px;
   width: 65%;
-  height: auto;
+  height: 200px;
   /* border-left: 1px solid #6b93de; */
   /* border-top: 1px solid #6b93de; */
   border-radius: 5px;
