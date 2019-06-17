@@ -129,7 +129,7 @@ class App extends Component {
             this.state.currentUser ?
               <Fragment>
                 <div className="navsl">
-                    <p>Welcome to BookFace, {this.state.currentUser.username}! <small class="text-muted">(The best social network...)</small></p>
+                    <p>Welcome to BookFace, {this.state.currentUser.username}! <small className="text-muted">(The best social network...)</small></p>
                     <a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>
                     <SearchBar />
                     <div>

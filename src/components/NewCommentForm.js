@@ -7,10 +7,11 @@ class NewCommentForm extends Component {
     // console.log(event.target.firstChild.value);
     let commentObj = {
       content: document.querySelector(`input[name]`).value,
-      user: this.props.currentUser,
+      user: this.props.user,
       post: this.props.post
     }
     this.props.addNewComment(commentObj)
+    this.props.handleAddComment(commentObj)
   }
 
   render() {

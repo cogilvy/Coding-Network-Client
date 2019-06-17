@@ -1,8 +1,13 @@
 import React, { Fragment, Component } from 'react';
 import Faker from 'faker'
 import TimeAgo from 'timeago-react'; // var TimeAgo = require('timeago-react');
+import PostModal from './PostModal'
 
 class Post extends Component {
+
+  state = {
+    isViewingModal: false
+  }
 
   renderLikes = () => {
     switch (this.props.post.likes) {
@@ -21,6 +26,11 @@ class Post extends Component {
     color:'rgb(54, 124, 255)', fontWeight:'400', lineHeight:'.69', verticalAlign: 'top',borderBottom: '2px solid rgb(54, 124, 255)', width: "75%", float: "right"
   }
 
+  handleModalClick = (event) => {
+    this.setState({
+      isViewingModal: !this.state.isViewingModal
+    })
+  }
 
 
   render() {
@@ -29,7 +39,7 @@ class Post extends Component {
     return (
       <Fragment>
 
-        <div data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} key={this.props.post.id} className="single-post">
+        <div onClick={this.handleModalClick} data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} key={this.props.post.id} className="single-post">
         {
           this.props.post.user ?
           <Fragment>
@@ -37,7 +47,7 @@ class Post extends Component {
             <p className="post-content">{content.substring(0,100)}...</p>
             <section className="post-footer">
               <hr></hr>
-              <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justify-content":"space-between"}}>
+              <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justifyContent":"space-between"}}>
                 <div>
                   <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-thumbs-up"></i>({this.props.post.likes.length}) Like</button>
                   <button data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
@@ -68,6 +78,10 @@ class Post extends Component {
           :
           null
         }
+        </div>
+        <div>
+          <PostModal  postObjToView={this.props.postObjToView}  currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} post={this.props.post}/>
+
         </div>
       </Fragment>
     );

@@ -37,7 +37,7 @@ class PostContainer extends Component {
   }
 
   render() {
-
+    console.log(this.state)
     return (
       <Fragment>
         {
@@ -52,8 +52,7 @@ class PostContainer extends Component {
             this.state.posts.map(post => {
               return (
                 <Fragment>
-                  <Post key={post.id} post={post} />
-                  <PostModal  postObjToView={this.props.postObjToView}  currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} post={post}/>
+                  <Post addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
                 </Fragment>
               )
             })
@@ -65,5 +64,6 @@ class PostContainer extends Component {
   }
 
 }
+// <PostModal  postObjToView={this.props.postObjToView}  currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} post={post}/>
 
 export default PostContainer;
