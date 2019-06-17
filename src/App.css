@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   font-family: Helvetica;
 }
 
@@ -86,7 +85,8 @@
 }
 
 .post-content {
-  margin-left: 25px;
+  margin: 0% 3% 0% 3%;
+  text-align: left;
 }
 
 
@@ -294,4 +294,17 @@
   text-align: left;
   height: 250px;
   width: 250px;
+}
+
+.post-header {
+  display: flex;
+}
+
+.avatar-username {
+  float: left;
+
+}
+
+.title {
+
 }

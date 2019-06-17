@@ -29,7 +29,7 @@ class Post extends Component {
     return (
       <Fragment>
 
-        <div key={this.props.post.id} className="single-post">
+        <div data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} key={this.props.post.id} className="single-post">
         {
           this.props.post.user ?
           <Fragment>

@@ -4,6 +4,7 @@ import TestPost from '../components/TestPost'
 import PostModal from "../components/PostModal"
 import NewPostForm from '../components/NewPostForm'
 
+
 class PostContainer extends Component {
 
   state = {
