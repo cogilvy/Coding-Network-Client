@@ -40,9 +40,9 @@ class PostModal extends Component {
                     <img style={{position: "bottom"}} src={Faker.image.avatar()} width="auto" height="auto" alt="..."/>
                   </div>
                   <div className="title">
-                    <h2 style={{float:"right", marginBottom: "10%"}}>{this.props.post.title}</h2>
-                    <h4 className="media-heading" style={{float:"left", marginLeft:"2%"}}>Author: {this.props.post.user? this.props.post.user.username : null}
-                      <br/><p className="post-user" style={{fontSize:'10px', float:"left", marginLeft: "5%"}}>Created: <TimeAgo datetime={this.props.post.created_at}/></p></h4>
+                    <strong><p style={{fontSize:"150%", marginLeft:"10%", marginTop:"2%", float:"right", width:"100%"}}>{this.props.post.title}</p></strong>
+                    <h4 className="media-heading" style={{float:"left", marginLeft:"2%", marginTop:"5%"}}>Author: {this.props.post.user? this.props.post.user.username : null}
+                    <br/><p className="post-user" style={{fontSize:'10px', float:"left", marginLeft: "5%"}}>Created: <TimeAgo datetime={this.props.post.created_at}/></p></h4>
                   </div>
                 </section>
                 <hr></hr>
@@ -50,12 +50,11 @@ class PostModal extends Component {
                   <div>
                     <p className="post-content">{this.props.post.content}</p>
                   </div>
-
                   <hr></hr>
                   <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justifyContent":"space-between"}}>
                     <div>
                       <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-thumbs-up"></i>({this.props.post.likes.length}) Like</button>
-                      <button  data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
+                      <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
                     </div>
                     <section className="post-heading">
                       <div className="row">
