@@ -15,14 +15,15 @@ class App extends Component {
 
   state = {
     currentUser: null,
-    isCreatingNewPost: false
+    isCreatingNewPost: false,
+    postObjToView: {}
   }
 
   componentDidMount() {
     const token = localStorage.getItem('token')
     if (token) {
-      // fetch("http://localhost:3000/api/v1/auto_login", {
-      fetch("https://threes-nutz-backend.herokuapp.com/api/v1/auto_login", {
+      fetch("http://localhost:3000/api/v1/auto_login", {
+      // fetch("https://threes-nutz-backend.herokuapp.com/api/v1/auto_login", {
         headers: {
           "Authorization": token
         }
@@ -39,6 +40,27 @@ class App extends Component {
         }
       })
     }
+  }
+
+  addNewComment = (commentObj) => {
+    console.log(commentObj);
+    // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/comments', {
+    fetch("http://localhost:3000/api/v1/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        content: commentObj.content,
+        user_id: commentObj.user.id,
+        post_id: commentObj.post.id
+      })
+    })
+    .then(res => res.json())
+    .then(response => {
+      console.log(response)
+    })
   }
 
   setCurrentUser = (user) => {
@@ -66,8 +88,8 @@ class App extends Component {
   createNewPost = (postObj) => {
     console.log(postObj);
 
-    // fetch('http://localhost:3000/api/v1/posts', {
-    fetch('https://threes-nutz-backend.herokuapp.com/api/v1/posts', {
+    fetch('http://localhost:3000/api/v1/posts', {
+    // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/posts', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,6 +100,7 @@ class App extends Component {
       })
     })
     .then(response => {
+      console.log(response)
       this.setState({
           isCreatingNewPost: !this.state.isCreatingNewPost
       })
@@ -91,9 +114,15 @@ class App extends Component {
     localStorage.removeItem("token")
   }
 
+  setPostObjToView = (postObj) => {
+    this.setState({
+      postObjToView: postObj
+    })
+  }
 
   render(){
     // <NavBar currentUser={this.state.currentUser} logout={this.logout} />
+    console.log(this.state.postObjToView)
     return (
       <div className="App">
           {
@@ -115,7 +144,7 @@ class App extends Component {
         {
           this.state.currentUser ?
           <div className="wrapper">
-            <PostContainer currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost}/>
+            <PostContainer setPostObjToView={this.setPostObjToView} postObjToView={this.state.postObjToView} addNewComment={this.addNewComment} currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost}/>
           </div>
 
           :

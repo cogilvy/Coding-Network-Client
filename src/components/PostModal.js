@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
+import NewCommentForm from './NewCommentForm';
 
 class PostModal extends Component {
+
+  state = {
+    commentsOnThisPost: []
+  }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     post:
+  //     commentsOnThisPost:
+  //   })
+  // }
 
   render() {
     return (
@@ -53,7 +65,7 @@ class PostModal extends Component {
                                             </a>
                                           </div>
                                           <div class="media-body">
-                                            <a href="#" class="anchor-username"><h4 class="media-heading">Media heading</h4></a>
+                                            <NewCommentForm post={this.props.post} currentUser={this.props.currentUser} addNewComment={this.props.addNewComment}/>
                                           </div>
                                         </div>
                                   </div>

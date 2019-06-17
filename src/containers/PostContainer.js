@@ -12,14 +12,18 @@ class PostContainer extends Component {
   // https://threes-nutz-backend.herokuapp.com/api/v1/
 
   componentDidMount() {
-    // fetch(`http://localhost:3000/api/v1/posts`)
-    fetch(`https://threes-nutz-backend.herokuapp.com/api/v1/posts`)
+    fetch(`http://localhost:3000/api/v1/posts`)
+    // fetch(`https://threes-nutz-backend.herokuapp.com/api/v1/posts`)
     .then(res => res.json())
     .then(data => {
       this.setState({
         posts: data
       })
     })
+  }
+
+  handleModalClick = (post) => {
+    // this.props.setPostObjToView(post)
   }
 
   render() {
@@ -41,7 +45,7 @@ class PostContainer extends Component {
               return (
                 <Fragment>
                   <Post key={post.id} post={post} />
-                  <PostModal post={post}/>
+                  <PostModal postObjToView={this.props.postObjToView}  currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} post={post}/>
                 </Fragment>
               )
             })
