@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './components/NavBar'
 import Login from "./components/Login"
 import Signup from "./components/Signup"
+import SearchBar from "./components/SearchBar"
 import LoginSignupContainer from "./containers/LoginSignupContainer"
 import PostContainer from "./containers/PostContainer"
 import NewPostForm from './components/NewPostForm'
@@ -62,8 +63,6 @@ class App extends Component {
 
   }
 
-
-
   createNewPost = (postObj) => {
     console.log(postObj);
 
@@ -85,25 +84,34 @@ class App extends Component {
     })
   }
 
+  logout = () => {
+    this.setState({
+      currentUser: null
+    })
+    localStorage.removeItem("token")
+  }
+
 
   render(){
     // <NavBar currentUser={this.state.currentUser} logout={this.logout} />
     return (
       <div className="App">
-        <div className="nav">
           {
             this.state.currentUser ?
               <Fragment>
-                <div className="nav-icon-div">
-                    <a href="/"><strong><p className="nav-icon">{this.state.currentUser.username}</p></strong></a>
-
+                <div className="navsl">
+                    <p>Welcome to BookFace, {this.state.currentUser.username}! <small class="text-muted">(The best social network...)</small></p>
                     <a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>
+                    <SearchBar />
+                    <div>
+                      <button style={{"margin-right":"5px"}}>My Profile</button>
+                      <button onClick={this.logout}>Logout</button>
+                    </div>
                 </div>
               </Fragment>
               :
               <div><p>LOGO</p></div>
           }
-        </div>
         {
           this.state.currentUser ?
           <div className="wrapper">

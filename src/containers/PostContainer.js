@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Post from '../components/Post'
+import TestPost from '../components/TestPost'
+import PostModal from "../components/PostModal"
 import NewPostForm from '../components/NewPostForm'
 
 class PostContainer extends Component {
@@ -36,15 +38,15 @@ class PostContainer extends Component {
             null
             :
             this.state.posts.map(post => {
-              return <Post key={post.id} post={post} />
+              return (
+                <Fragment>
+                  <Post key={post.id} post={post} />
+                  <PostModal post={post}/>
+                </Fragment>
+              )
             })
           }
-          <div>
-            Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>
-            from <a href="https://www.flaticon.com/"
-            title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
-            title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-          </div>
+        </div>
         }
       </Fragment>
     );
