@@ -33,14 +33,14 @@ class Post extends Component {
         {
           this.props.post.user ?
           <Fragment>
-            <h2 >{this.props.post.title}</h2>
+            <strong><p>{this.props.post.title}</p></strong>
             <p className="post-content">{content.substring(0,100)}...</p>
             <section className="post-footer">
               <hr></hr>
               <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justify-content":"space-between"}}>
                 <div>
                   <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-thumbs-up"></i>({this.props.post.likes.length}) Like</button>
-                  <button data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
+                  <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
                   <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-share-alt"></i> Share</button>
                 </div>
                 <section className="post-heading">
