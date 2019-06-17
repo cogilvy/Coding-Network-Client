@@ -144,7 +144,7 @@ class App extends Component {
         {
           this.state.currentUser ?
           <div className="wrapper">
-            <PostContainer setPostObjToView={this.setPostObjToView} postObjToView={this.state.postObjToView} addNewComment={this.addNewComment} currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost}/>
+            <PostContainer  postObjToView={this.state.postObjToView} addNewComment={this.addNewComment} currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost}/>
           </div>
 
           :
