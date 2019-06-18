@@ -3,14 +3,18 @@ import './App.css';
 import SearchBar from "./components/SearchBar"
 import LoginSignupContainer from "./containers/LoginSignupContainer"
 import PostContainer from "./containers/PostContainer"
-
+import NewPostForm from './components/NewPostForm'
+import TimeAgo from 'timeago-react'; // var TimeAgo = require('timeago-react');
+import UserContainer from './containers/UserContainer'
 
 class App extends Component {
 
   state = {
     currentUser: null,
     isCreatingNewPost: false,
-    postObjToView: {}
+    postObjToView: {},
+    isViewingProfile: false,
+    profileToView: null
   }
 
   componentDidMount() {
@@ -36,9 +40,15 @@ class App extends Component {
     }
   }
 
+  setCurrentUserAfter = (userObj) => {
+    this.setState({
+      currentUser: userObj
+    })
+  }
+
   addNewComment = (commentObj) => {
-    console.log(commentObj);
     // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/comments', {
+    console.log(commentObj);
     fetch("http://localhost:3000/api/v1/comments", {
       method: "POST",
       headers: {
@@ -51,10 +61,8 @@ class App extends Component {
         post_id: commentObj.post.id
       })
     })
-    .then(res => res.json())
-    .then(response => {
-      console.log(response)
-    })
+
+
   }
 
   setCurrentUser = (user) => {
@@ -80,6 +88,8 @@ class App extends Component {
   }
 
   createNewPost = (postObj) => {
+
+
     fetch('http://localhost:3000/api/v1/posts', {
     // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/posts', {
       method: "POST",
@@ -92,6 +102,7 @@ class App extends Component {
       })
     })
     .then(response => {
+
       this.setState({
           isCreatingNewPost: !this.state.isCreatingNewPost
       })
@@ -111,6 +122,29 @@ class App extends Component {
     })
   }
 
+  handleProfileClick = (event) => {
+    event.preventDefault()
+    this.setState({
+      isViewingProfile: !this.state.isViewingProfile,
+      profileToView: this.state.currentUser
+    })
+  }
+
+  viewHomePageClick = (event) => {
+    event.preventDefault()
+    this.setState({
+      isCreatingNewPost: false,
+      isViewingProfile: false
+    })
+  }
+
+  changeProfileToView = (userObj) => {
+    this.setState({
+      profileToView: userObj,
+      isViewingProfile: !this.state.isViewingProfile
+    })
+  }
+
   render(){
     // <NavBar currentUser={this.state.currentUser} logout={this.logout} />
     return (
@@ -119,11 +153,12 @@ class App extends Component {
             this.state.currentUser ?
               <Fragment>
                 <div className="navsl">
+                    <a className="logo" href="" onClick={this.viewHomePageClick}><img style={{height:"70px"}} src="./infinity.svg"/></a>
                     <p>Welcome to BookFace, {this.state.currentUser.username}! <small className="text-muted">(The best social network...)</small></p>
                     <a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>
                     <SearchBar />
                     <div>
-                      <button style={{"marginRight":"5px"}}>My Profile</button>
+                      <button onClick={this.handleProfileClick} style={{"margin-right":"5px"}}>My Profile</button>
                       <button onClick={this.logout}>Logout</button>
                     </div>
                 </div>
@@ -133,10 +168,14 @@ class App extends Component {
           }
         {
           this.state.currentUser ?
-          <div className="wrapper">
-            <PostContainer  postObjToView={this.state.postObjToView} addNewComment={this.addNewComment} currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost} currentUser={this.state.currentUser}/>
-          </div>
-
+            this.state.isViewingProfile ?
+            <div className="wrapper">
+              <UserContainer changeProfileToView={this.changeProfileToView} profileToView={this.state.profileToView} currentUser={this.state.currentUser}/>
+            </div>
+            :
+            <div className="wrapper">
+              <PostContainer changeProfileToView={this.changeProfileToView} profileToView={this.state.profileToView} setCurrentUserAfter={this.setCurrentUserAfter} postObjToView={this.state.postObjToView} addNewComment={this.addNewComment} currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost}/>
+            </div>
           :
           <LoginSignupContainer currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser}/>
         }

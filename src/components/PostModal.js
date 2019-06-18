@@ -27,7 +27,7 @@ class PostModal extends Component {
   }
 
   handleAddComment = (commentObj) => {
-    console.log("comment obj", commentObj)
+
     this.setState({
       commentsOnPost: [...this.state.commentsOnPost, commentObj]
     })
@@ -47,12 +47,21 @@ class PostModal extends Component {
     })
   }
 
+  handleUserClick = (event) => {
+    event.preventDefault()
+    const userObj = this.props.post.user
+    this.props.changeProfileToView(userObj)
+    document.querySelector("body").classList.toggle("modal-open")
+
+    // $('.modal').modal('hide')
+  }
+
   render() {
     console.log(allUsers);
     return (
-      <div className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div className="modal-dialog modal-lg">
-          <div className="modal-content">
+      <div id="viewing-modal" className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
             {
               this.props.post.user ?
               <Fragment>
@@ -62,7 +71,7 @@ class PostModal extends Component {
                   </div>
                   <div className="title">
                     <strong><p style={{fontSize:"150%", marginLeft:"10%", marginTop:"2%", float:"right", width:"100%"}}>{this.props.post.title}</p></strong>
-                    <h4 className="media-heading" style={{float:"left", marginLeft:"2%", marginTop:"5%"}}>Author: {this.props.post.user? this.props.post.user.username : null}
+                    <h4 className="media-heading" style={{float:"left", marginLeft:"2%", marginTop:"5%"}}>Author: {this.props.post.user ? <a onClick={this.handleUserClick} href=""> {this.props.post.user.username} </a> : null}
                     <br/><p className="post-user" style={{fontSize:'10px', float:"left", marginLeft: "5%"}}>Created: <TimeAgo datetime={this.props.post.created_at}/></p></h4>
                   </div>
                 </section>
@@ -82,7 +91,36 @@ class PostModal extends Component {
                       {this.renderLikes()}
                     </div>
                   </div>
+<<<<<<< HEAD
                   <hr></hr>
+=======
+
+
+
+
+                    <section className="post-heading">
+                      <div className="row">
+                        <div className="col-md-3">
+                          <div className="media">
+                            <div className="media-left">
+                              <a href="#">
+
+                              </a>
+                            </div>
+                            <div className="media-body">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </section>
+                <div className="comment-like-wrapper">
+                  <LikeButton setCurrentUserAfter={this.props.setCurrentUserAfter} currentUser={this.props.currentUser} addLike={this.props.addLike} post={this.props.post} user={this.props.post.user}/>
+                  <NewCommentForm handleAddComment={this.handleAddComment} post={this.props.post} user={this.props.post.user} addNewComment={this.props.addNewComment}/>
+                </div>
+>>>>>>> 3910553fd77913d81565bbe662789e19f07ff5f3
                   <div className="comments-div">
                     <ul>
                     {
