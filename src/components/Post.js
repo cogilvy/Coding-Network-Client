@@ -43,7 +43,7 @@ class Post extends Component {
         {
           this.props.post.user ?
           <Fragment>
-            <h2 >{this.props.post.title}</h2>
+            <strong><p>{this.props.post.title}</p></strong>
             <p className="post-content">{content.substring(0,100)}...</p>
             <section className="post-footer">
               <hr></hr>

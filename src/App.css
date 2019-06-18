@@ -47,12 +47,11 @@
   display: grid;
   grid-template-columns: repeat(2,1fr);
   background-color: #edf0f5;
-  height: 100%;
+  height: auto;
 }
 
 .single-post {
   display: block;
-  overflow: scroll;
   text-align: left;
   box-shadow: 6px 6px 3px #8387d461;
   margin: 0 auto;
@@ -310,9 +309,15 @@
 
 .avatar-username {
   float: left;
-
 }
 
 .title {
+  width: 100%;
+  text-align: center;
+}
 
+.stuff {
+   position: absolute;
+   bottom: 0;
+   margin-bottom: none;
 }

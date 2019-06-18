@@ -53,9 +53,9 @@ class PostModal extends Component {
                     <img style={{position: "bottom"}} src={Faker.image.avatar()} width="auto" height="auto" alt="..."/>
                   </div>
                   <div className="title">
-                    <h2 style={{float:"right", marginBottom: "10%"}}>{this.props.post.title}</h2>
-                    <h4 className="media-heading" style={{float:"left", marginLeft:"2%"}}>Author: {this.props.post.user? this.props.post.user.username : null}
-                      <br/><p className="post-user" style={{fontSize:'10px', float:"left", marginLeft: "5%"}}>Created: <TimeAgo datetime={this.props.post.created_at}/></p></h4>
+                    <strong><p style={{fontSize:"150%", marginLeft:"10%", marginTop:"2%", float:"right", width:"100%"}}>{this.props.post.title}</p></strong>
+                    <h4 className="media-heading" style={{float:"left", marginLeft:"2%", marginTop:"5%"}}>Author: {this.props.post.user? this.props.post.user.username : null}
+                    <br/><p className="post-user" style={{fontSize:'10px', float:"left", marginLeft: "5%"}}>Created: <TimeAgo datetime={this.props.post.created_at}/></p></h4>
                   </div>
                 </section>
                 <hr></hr>
@@ -63,7 +63,6 @@ class PostModal extends Component {
                   <div>
                     <p className="post-content">{this.props.post.content}</p>
                   </div>
-
                   <hr></hr>
                   <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justifyContent":"space-between"}}>
 
