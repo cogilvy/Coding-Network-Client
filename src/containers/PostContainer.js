@@ -52,7 +52,7 @@ class PostContainer extends Component {
             this.state.posts.map(post => {
               return (
                 <Fragment>
-                  <Post addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
+                  <Post currentUser={this.props.currentUser}  addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
                 </Fragment>
               )
             })

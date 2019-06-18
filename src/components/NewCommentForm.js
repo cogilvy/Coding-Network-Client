@@ -5,9 +5,11 @@ class NewCommentForm extends Component {
   handleClick = (event) => {
     event.preventDefault()
     // console.log(event.target.firstChild.value);
+
+
     let commentObj = {
-      content: document.querySelector(`input[name]`).value,
-      user: this.props.user,
+      content: event.target.parentElement.firstChild.nextElementSibling.value,
+      user: this.props.currentUser,
       post: this.props.post
     }
     this.props.addNewComment(commentObj)

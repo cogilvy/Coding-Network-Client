@@ -34,8 +34,25 @@
   display: inline-block;
   /* justify-content: space-between; */
   align-items: center;
-  background-color: #6b93de;
+  background-color: #1f61a8;
 
+}
+
+.user-container {
+  position: relative;
+  padding: 5px;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  background-color: #edf0f5;
+  height: 100%;
+}
+
+.profile-image {
+  text-align: left;
+  /* display: inline-block; */
 }
 
 .post-container {
@@ -234,7 +251,8 @@
   /* position: fixed; */
   width: 100%;
   border-radius: 2px;
-	border: 4px solid #305A72;
+	border-bottom:  4px solid #25529b;
+  border-top:  4px solid #25529b;
   font-size: 25px;
   font-family: monospace;
 }

@@ -9,14 +9,15 @@ import LoginSignupContainer from "./containers/LoginSignupContainer"
 import PostContainer from "./containers/PostContainer"
 import NewPostForm from './components/NewPostForm'
 import TimeAgo from 'timeago-react'; // var TimeAgo = require('timeago-react');
-
+import UserContainer from './containers/UserContainer'
 
 class App extends Component {
 
   state = {
     currentUser: null,
     isCreatingNewPost: false,
-    postObjToView: {}
+    postObjToView: {},
+    isViewingProfile: false
   }
 
   componentDidMount() {
@@ -43,7 +44,6 @@ class App extends Component {
   }
 
   addNewComment = (commentObj) => {
-    console.log(commentObj);
     // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/comments', {
     fetch("http://localhost:3000/api/v1/comments", {
       method: "POST",
@@ -57,10 +57,7 @@ class App extends Component {
         post_id: commentObj.post.id
       })
     })
-    .then(res => res.json())
-    .then(response => {
-      console.log(response)
-    })
+
   }
 
   setCurrentUser = (user) => {
@@ -86,7 +83,7 @@ class App extends Component {
   }
 
   createNewPost = (postObj) => {
-    console.log(postObj);
+
 
     fetch('http://localhost:3000/api/v1/posts', {
     // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/posts', {
@@ -100,7 +97,7 @@ class App extends Component {
       })
     })
     .then(response => {
-      console.log(response)
+
       this.setState({
           isCreatingNewPost: !this.state.isCreatingNewPost
       })
@@ -120,6 +117,21 @@ class App extends Component {
     })
   }
 
+  handleProfileClick = (event) => {
+    event.preventDefault()
+    this.setState({
+      isViewingProfile: !this.state.isViewingProfile
+    })
+  }
+
+  viewHomePageClick = (event) => {
+    event.preventDefault()
+    this.setState({
+      isCreatingNewPost: false,
+      isViewingProfile: false
+    })
+  }
+
   render(){
     // <NavBar currentUser={this.state.currentUser} logout={this.logout} />
     console.log(this.state.postObjToView)
@@ -129,11 +141,12 @@ class App extends Component {
             this.state.currentUser ?
               <Fragment>
                 <div className="navsl">
+                    <a className="logo" href="" onClick={this.viewHomePageClick}><img style={{height:"70px"}} src="./infinity.svg"/></a>
                     <p>Welcome to BookFace, {this.state.currentUser.username}! <small className="text-muted">(The best social network...)</small></p>
                     <a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>
                     <SearchBar />
                     <div>
-                      <button style={{"margin-right":"5px"}}>My Profile</button>
+                      <button onClick={this.handleProfileClick} style={{"margin-right":"5px"}}>My Profile</button>
                       <button onClick={this.logout}>Logout</button>
                     </div>
                 </div>
@@ -143,10 +156,14 @@ class App extends Component {
           }
         {
           this.state.currentUser ?
-          <div className="wrapper">
-            <PostContainer  postObjToView={this.state.postObjToView} addNewComment={this.addNewComment} currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost}/>
-          </div>
-
+            this.state.isViewingProfile ?
+            <div className="wrapper">
+              <UserContainer currentUser={this.state.currentUser}/>
+            </div>
+            :
+            <div className="wrapper">
+              <PostContainer  postObjToView={this.state.postObjToView} addNewComment={this.addNewComment} currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost}/>
+            </div>
           :
           <LoginSignupContainer currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser}/>
         }
