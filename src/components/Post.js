@@ -6,19 +6,21 @@ import PostModal from './PostModal'
 class Post extends Component {
 
   state = {
-    isViewingModal: false
+    isViewingModal: false,
+    likes: this.props.post.likes ? this.props.post.likes.length : null,
+    userLikes: this.props.currentUser.likes
   }
 
   renderLikes = () => {
     switch (this.props.post.likes) {
       case 0:
-        return <Fragment>{this.props.post.likes.length} Likes</Fragment>
+        return <Fragment>{this.state.likes} Likes</Fragment>
         // break;
       case 1:
-        return <Fragment>{this.props.post.likes.length} Like</Fragment>
+        return <Fragment>{this.state.likes} Like</Fragment>
         // break;
       default:
-        return <Fragment>{this.props.post.likes.length} Likes</Fragment>
+        return <Fragment>{this.state.likes} Likes</Fragment>
     }
   }
 
@@ -32,13 +34,38 @@ class Post extends Component {
     })
   }
 
+  addLike = () => {
+    fetch("http://localhost:3000/api/v1/likes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        user_id: this.props.currentUser.id,
+        post_id: this.props.post.id
+      })
+    })
+    this.setState({
+      likes: this.state.likes + 1
+    })
+  }
+
+  deleteLike = (likeID) => {
+    fetch(`http://localhost:3000/api/v1/likes/${likeID}`, {
+      method: "DELETE"
+    })
+    this.setState({
+      likes: this.state.likes - 1
+    })
+  }
 
   render() {
+    console.log("userLikes", this.state.userLikes, this.props.post.id);
+    console.log("postLikes", this.props.post.likes, this.props.post.id);
     const content = this.props.post.content
-
     return (
       <Fragment>
-
         <div onClick={this.handleModalClick} data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} key={this.props.post.id} className="single-post">
         {
           this.props.post.user ?
@@ -50,7 +77,7 @@ class Post extends Component {
               <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justifyContent":"space-between"}}>
                 <div>
                   {this.renderLikes()}
-                  <button data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
+                  <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
                   <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-share-alt"></i> Share</button>
                 </div>
                 <section className="post-heading">

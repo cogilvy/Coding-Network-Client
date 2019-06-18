@@ -1,9 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import { Route } from 'react-router-dom'
 import './App.css';
-import NavBar from './components/NavBar'
-import Login from "./components/Login"
-import Signup from "./components/Signup"
 import SearchBar from "./components/SearchBar"
 import LoginSignupContainer from "./containers/LoginSignupContainer"
 import PostContainer from "./containers/PostContainer"
@@ -151,8 +147,6 @@ class App extends Component {
 
   render(){
     // <NavBar currentUser={this.state.currentUser} logout={this.logout} />
-    console.log(this.state)
-    console.log("current user: ", this.state.currentUser);
     return (
       <div className="App">
           {

@@ -13,13 +13,13 @@ class PostModal extends Component {
   renderLikes = () => {
     switch (this.props.post.likes) {
       case 0:
-        return <Fragment>{this.props.post.likes.length} Likes</Fragment>
+        return <Fragment>{this.props.likes} Likes</Fragment>
         // break;
       case 1:
-        return <Fragment>{this.props.post.likes.length} Like</Fragment>
+        return <Fragment>{this.props.likes} Like</Fragment>
         // break;
       default:
-        return <Fragment>{this.props.post.likes.length} Likes</Fragment>
+        return <Fragment>{this.props.likes} Likes</Fragment>
     }
   }
 
@@ -28,7 +28,6 @@ class PostModal extends Component {
     this.setState({
       commentsOnPost: [...this.state.commentsOnPost, commentObj]
     })
-
   }
 
   handleUserClick = (event) => {
@@ -42,8 +41,6 @@ class PostModal extends Component {
 
 
   render() {
-
-    // debugger
     return (
       <div id="viewing-modal" className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -98,13 +95,13 @@ class PostModal extends Component {
                   </div>
                 </section>
                 <div className="comment-like-wrapper">
-                  <LikeButton post={this.props.post} currentUser={this.props.currentUser}/>
-                  <NewCommentForm setCurrentUserAfter={this.props.setCurrentUserAfter} currentUser={this.props.currentUser} handleAddComment={this.handleAddComment} post={this.props.post} user={this.props.post.user} addNewComment={this.props.addNewComment}/>
+                  <LikeButton setCurrentUserAfter={this.props.setCurrentUserAfter} currentUser={this.props.currentUser} addLike={this.props.addLike} post={this.props.post} user={this.props.post.user}/>
+                  <NewCommentForm handleAddComment={this.handleAddComment} post={this.props.post} user={this.props.post.user} addNewComment={this.props.addNewComment}/>
                 </div>
                   <div className="comments-div">
                     {
                       this.state.commentsOnPost.map(comment => {
-                        return <div>{comment.content}</div>
+                        return <div key={comment.id}>{comment.content}</div>
                       })
                     }
                   </div>

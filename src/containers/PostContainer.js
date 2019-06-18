@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import Post from '../components/Post'
-import TestPost from '../components/TestPost'
-import PostModal from "../components/PostModal"
 import NewPostForm from '../components/NewPostForm'
 
 
@@ -38,7 +36,6 @@ class PostContainer extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <Fragment>
         {
