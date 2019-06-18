@@ -9,7 +9,7 @@ class UserContainer extends Component {
   render() {
     return (
       <div className="user-container">
-        <Profile currentUser={this.props.currentUser}/>
+        <Profile changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} currentUser={this.props.currentUser}/>
       </div>
     );
   }

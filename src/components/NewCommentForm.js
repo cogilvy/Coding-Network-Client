@@ -12,6 +12,7 @@ class NewCommentForm extends Component {
       user: this.props.currentUser,
       post: this.props.post
     }
+    console.log("this.props.currentUser:",this.props.currentUser)
     this.props.addNewComment(commentObj)
     this.props.handleAddComment(commentObj)
   }

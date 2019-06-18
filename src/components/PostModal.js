@@ -23,26 +23,29 @@ class PostModal extends Component {
     }
   }
 
-  handleModalClick = () => {
-    // console.log(this.state.postToView)
-
-  }
-
   handleAddComment = (commentObj) => {
-    console.log("comment obj", commentObj)
+
     this.setState({
       commentsOnPost: [...this.state.commentsOnPost, commentObj]
     })
 
   }
 
+  handleUserClick = (event) => {
+    event.preventDefault()
+    const userObj = this.props.post.user
+    this.props.changeProfileToView(userObj)
+    document.querySelector("body").classList.toggle("modal-open")
+
+    // $('.modal').modal('hide')
+  }
 
 
   render() {
 
     // debugger
     return (
-      <div  className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div id="viewing-modal" className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             {
@@ -54,7 +57,7 @@ class PostModal extends Component {
                   </div>
                   <div className="title">
                     <strong><p style={{fontSize:"150%", marginLeft:"10%", marginTop:"2%", float:"right", width:"100%"}}>{this.props.post.title}</p></strong>
-                    <h4 className="media-heading" style={{float:"left", marginLeft:"2%", marginTop:"5%"}}>Author: {this.props.post.user? this.props.post.user.username : null}
+                    <h4 className="media-heading" style={{float:"left", marginLeft:"2%", marginTop:"5%"}}>Author: {this.props.post.user ? <a onClick={this.handleUserClick} href=""> {this.props.post.user.username} </a> : null}
                     <br/><p className="post-user" style={{fontSize:'10px', float:"left", marginLeft: "5%"}}>Created: <TimeAgo datetime={this.props.post.created_at}/></p></h4>
                   </div>
                 </section>
@@ -96,7 +99,7 @@ class PostModal extends Component {
                 </section>
                 <div className="comment-like-wrapper">
                   <LikeButton post={this.props.post} currentUser={this.props.currentUser}/>
-                  <NewCommentForm currentUser={this.props.currentUser} handleAddComment={this.handleAddComment} post={this.props.post} user={this.props.post.user} addNewComment={this.props.addNewComment}/>
+                  <NewCommentForm setCurrentUserAfter={this.props.setCurrentUserAfter} currentUser={this.props.currentUser} handleAddComment={this.handleAddComment} post={this.props.post} user={this.props.post.user} addNewComment={this.props.addNewComment}/>
                 </div>
                   <div className="comments-div">
                     {

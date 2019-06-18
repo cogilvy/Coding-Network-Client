@@ -5,48 +5,81 @@ import Faker from 'faker'
 class Profile extends Component {
 
   state = {
-    postsArray: null,
-    postsCommentedOn: null,
-    postsLiked: null,
-    currentUser: null
+    postsArray: [],
+    postsCommentedOn: [],
+    commentsArray: [],
+    postsLiked: [],
+    postsCommentedOnDict: {},
+    currentUser: this.props.currentUser,
+    profileToView: this.props.profileToView
   }
 
-  componentDidMount() {
+
+  componentWillMount() {
     fetch(`http://localhost:3000/api/v1/posts`)
-    // fetch(`https://threes-nutz-backend.herokuapp.com/api/v1/posts`)
     .then(res => res.json())
-    .then(data => {
-      this.setState({
-        postsArray: data,
-        currentUser: this.props.currentUser
+    .then(postsData => {
+      let allCommentDict = {}
+      let allCommentObjsArray = postsData.map(post => {
+        if (post.comments.length > 1) {
+          return allCommentDict[post.id] = post.comments
+        }
       })
-      this.getCommentedPosts()
+      this.setState({
+        postsArray: postsData
+      })
+    })
+
+    fetch(`http://localhost:3000/api/v1/comments`)
+    .then(res => res.json())
+    .then(commentsData => {
+      this.setState({
+        commentsArray: commentsData
+      })
     })
   }
 
-  getCommentedPosts = () => {
-    let myUserCommentArray = this.props.currentUser.comments.map(comment => {
-      this.state.postsArray.filter(post => {
-        return post.id === comment.post_id
+  getCommentsAndPosts = () => {
+    let postsYouCommentedOn = []
+    let yourComments = {}
+    this.state.commentsArray.map(comment => {
+      return this.state.postsArray.map(post => {
+
+        if (post.id === comment.post_id && comment.user_id === this.state.currentUser.id) {
+          yourComments[post.id] = comment
+          postsYouCommentedOn.push(post)
+        }
       })
     })
-    this.setState({
-      postsCommentedOn: myUserCommentArray
-    })
-    debugger
+
+  const myPosts = this.state.postsArray.filter(post => {
+    return Object.keys(yourComments).includes(post.id.toString())
+  })
+    // console.log(check);
+    // debugger
+  return myPosts.map(post =>{
+    return <div>{post.title} - {yourComments[post.id].content}</div>
+  })
+
   }
+
 
   render() {
-    console.log(this.state.postsCommentedOn)
-    // debugger
+    // console.log(this.state);
+    // this.getCommentsAndPosts()
     return (
       <div className="profile-container">
         <div className="profile-image">
           <img src={Faker.image.avatar()}/>
         </div>
         <div className="details-container">
-          <h2>{this.props.currentUser.username}</h2>
-
+          <h2>{this.state.profileToView.username}</h2>
+          <div>
+            <h3>Posts {this.state.profileToView.username} has commented on: </h3>
+            {
+              this.getCommentsAndPosts()
+            }
+          </div>
         </div>
       </div>
     );

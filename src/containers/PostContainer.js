@@ -19,6 +19,7 @@ class PostContainer extends Component {
     // fetch(`https://threes-nutz-backend.herokuapp.com/api/v1/posts`)
     .then(res => res.json())
     .then(data => {
+      console.log("Daat",data);
       this.setState({
         posts: data
       })
@@ -42,9 +43,9 @@ class PostContainer extends Component {
       <Fragment>
         {
           this.props.isCreatingNewPost ?
-          <NewPostForm currentUser={this.props.currentUser} createNewPost={this.props.createNewPost}/>
+          <NewPostForm currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} createNewPost={this.props.createNewPost}/>
           :
-        <div className="post-container">
+          <div className="post-container">
           {
             this.state.posts === [1] ?
             null
@@ -52,12 +53,12 @@ class PostContainer extends Component {
             this.state.posts.map(post => {
               return (
                 <Fragment>
-                  <Post currentUser={this.props.currentUser}  addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
+                  <Post changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
                 </Fragment>
               )
             })
           }
-        </div>
+          </div>
         }
       </Fragment>
     );
