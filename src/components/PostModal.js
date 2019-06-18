@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react';
 import Faker from 'faker'
 import TimeAgo from 'timeago-react';
 import NewCommentForm from './NewCommentForm'
-
+import LikeButton from './LikeButton'
 class PostModal extends Component {
 
   state = {
@@ -26,7 +26,7 @@ class PostModal extends Component {
 
 
   render() {
-    console.log(this.state.commentsOnPost)
+
     // debugger
     return (
       <div  className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -54,7 +54,7 @@ class PostModal extends Component {
                   <hr></hr>
                   <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justifyContent":"space-between"}}>
                     <div>
-                      <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-thumbs-up"></i>({this.props.post.likes.length}) Like</button>
+                      <LikeButton post={this.props.post} user={this.props.post.user}/>
                       <button  data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
                     </div>
                     <section className="post-heading">
@@ -96,3 +96,4 @@ class PostModal extends Component {
 }
 
 export default PostModal;
+//                       <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-thumbs-up"></i>({this.props.post.likes.length}) Like</button>
