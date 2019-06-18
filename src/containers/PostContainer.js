@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import Post from '../components/Post'
-import TestPost from '../components/TestPost'
-import PostModal from "../components/PostModal"
 import NewPostForm from '../components/NewPostForm'
 
 
@@ -37,7 +35,6 @@ class PostContainer extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <Fragment>
         {
@@ -50,11 +47,7 @@ class PostContainer extends Component {
             null
             :
             this.state.posts.map(post => {
-              return (
-                <Fragment>
-                  <Post addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
-                </Fragment>
-              )
+              return <Post key={post.id} currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} post={post} />
             })
           }
         </div>

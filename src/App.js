@@ -1,14 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import { Route } from 'react-router-dom'
 import './App.css';
-import NavBar from './components/NavBar'
-import Login from "./components/Login"
-import Signup from "./components/Signup"
 import SearchBar from "./components/SearchBar"
 import LoginSignupContainer from "./containers/LoginSignupContainer"
 import PostContainer from "./containers/PostContainer"
-import NewPostForm from './components/NewPostForm'
-import TimeAgo from 'timeago-react'; // var TimeAgo = require('timeago-react');
 
 
 class App extends Component {
@@ -86,8 +80,6 @@ class App extends Component {
   }
 
   createNewPost = (postObj) => {
-    console.log(postObj);
-
     fetch('http://localhost:3000/api/v1/posts', {
     // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/posts', {
       method: "POST",
@@ -100,7 +92,6 @@ class App extends Component {
       })
     })
     .then(response => {
-      console.log(response)
       this.setState({
           isCreatingNewPost: !this.state.isCreatingNewPost
       })
@@ -122,7 +113,6 @@ class App extends Component {
 
   render(){
     // <NavBar currentUser={this.state.currentUser} logout={this.logout} />
-    console.log(this.state.postObjToView)
     return (
       <div className="App">
           {
@@ -144,7 +134,7 @@ class App extends Component {
         {
           this.state.currentUser ?
           <div className="wrapper">
-            <PostContainer  postObjToView={this.state.postObjToView} addNewComment={this.addNewComment} currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost}/>
+            <PostContainer  postObjToView={this.state.postObjToView} addNewComment={this.addNewComment} currentUser={this.state.currentUser} createNewPost={this.createNewPost} isCreatingNewPost={this.state.isCreatingNewPost} currentUser={this.state.currentUser}/>
           </div>
 
           :
