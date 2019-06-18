@@ -91,36 +91,7 @@ class PostModal extends Component {
                       {this.renderLikes()}
                     </div>
                   </div>
-<<<<<<< HEAD
                   <hr></hr>
-=======
-
-
-
-
-                    <section className="post-heading">
-                      <div className="row">
-                        <div className="col-md-3">
-                          <div className="media">
-                            <div className="media-left">
-                              <a href="#">
-
-                              </a>
-                            </div>
-                            <div className="media-body">
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </section>
-                <div className="comment-like-wrapper">
-                  <LikeButton setCurrentUserAfter={this.props.setCurrentUserAfter} currentUser={this.props.currentUser} addLike={this.props.addLike} post={this.props.post} user={this.props.post.user}/>
-                  <NewCommentForm handleAddComment={this.handleAddComment} post={this.props.post} user={this.props.post.user} addNewComment={this.props.addNewComment}/>
-                </div>
->>>>>>> 3910553fd77913d81565bbe662789e19f07ff5f3
                   <div className="comments-div">
                     <ul>
                     {

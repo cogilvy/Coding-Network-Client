@@ -8,7 +8,7 @@ class NewCommentForm extends Component {
 
 
     let commentObj = {
-      content: event.target.parentElement.firstChild.nextElementSibling.value,
+      content: event.target.parentElement.firstElementChild.value,
       user: this.props.currentUser,
       post: this.props.post
     }
@@ -21,7 +21,7 @@ class NewCommentForm extends Component {
     return (
       <Fragment>
         <textarea id="comment-textarea" type="text" name="comment" style={{height:"44px", width:"500px", display: "inline-block"}} placeholder="Write your comment here..."></textarea>
-        <input id="comment-button" onClick={this.handleClick} style={{height:"44px", display: "inline-block"}} type="button" value="Comment !"></input>
+        <input id="comment-button" onClick={this.handleClick} style={{height:"44px", display: "inline-block"}} type="button" ></input>
       </Fragment>
     );
   }

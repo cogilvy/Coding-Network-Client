@@ -105,7 +105,7 @@ class Post extends Component {
         }
         </div>
         <div>
-          <PostModal changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} postObjToView={this.props.postObjToView} setCurrentUserAfter={this.props.setCurrentUserAfter} currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} post={this.props.post}/>
+          <PostModal addLike={this.addLike} likes={this.state.likes} changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} postObjToView={this.props.postObjToView} setCurrentUserAfter={this.props.setCurrentUserAfter} currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} post={this.props.post}/>
 
         </div>
       </Fragment>
