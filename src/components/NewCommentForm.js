@@ -6,8 +6,8 @@ class NewCommentForm extends Component {
     event.preventDefault()
     // console.log(event.target.firstChild.value);
     let commentObj = {
-      content: document.querySelector(`input[name]`).value,
-      user: this.props.user,
+      content: document.querySelector(`textarea[name]`).value,
+      user: this.props.currentUser,
       post: this.props.post
     }
     this.props.addNewComment(commentObj)
@@ -17,8 +17,8 @@ class NewCommentForm extends Component {
   render() {
     return (
       <Fragment>
-        <textarea id="comment-textarea" type="text" name="comment" style={{width:"500px", marginLeft:"39px"}} placeholder="comment here"></textarea>
-        <input id="comment-button" onClick={this.handleClick} style={{position:"absolute", height:"44px"}} type="button" value="Comment !"></input>
+        <textarea id="comment-textarea" type="text" name="comment" style={{height:"44px", width:"500px", display: "inline-block"}} placeholder="Write your comment here..."></textarea>
+        <input id="comment-button" onClick={this.handleClick} style={{height:"44px", display: "inline-block"}} type="button" value="Comment !"></input>
       </Fragment>
     );
   }

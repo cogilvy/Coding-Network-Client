@@ -3,6 +3,9 @@ import Faker from 'faker'
 import TimeAgo from 'timeago-react';
 import NewCommentForm from './NewCommentForm'
 import LikeButton from './LikeButton'
+
+let allUsers = []
+
 class PostModal extends Component {
 
   state = {
@@ -13,13 +16,13 @@ class PostModal extends Component {
   renderLikes = () => {
     switch (this.props.post.likes) {
       case 0:
-        return <Fragment>{this.props.likes} Likes</Fragment>
+        return <p className="likes">{this.props.likes} Likes</p>
         // break;
       case 1:
-        return <Fragment>{this.props.likes} Like</Fragment>
+        return <p className="likes">{this.props.likes} Like</p>
         // break;
       default:
-        return <Fragment>{this.props.likes} Likes</Fragment>
+        return <p className="likes">{this.props.likes} Likes</p>
     }
   }
 
@@ -30,7 +33,22 @@ class PostModal extends Component {
     })
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3000/api/v1/users')
+    .then(res => res.json())
+    .then(data => {
+      allUsers = data
+    })
+  }
+
+  findUser = (userID) => {
+    return allUsers.find(user => {
+      return user.id === userID
+    })
+  }
+
   render() {
+    console.log(allUsers);
     return (
       <div className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg">
@@ -55,47 +73,26 @@ class PostModal extends Component {
                   </div>
                   <hr></hr>
                   <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justifyContent":"space-between"}}>
+                    <div className="category-likes">
 
-
-
-                  <div className="category-likes">
-                    <p>Category: {this.props.post.category}    </p>
-                    {this.renderLikes()}
+                    </div>
+                    <div className="comment-like-wrapper">
+                      <NewCommentForm currentUser={this.props.currentUser} handleAddComment={this.handleAddComment} post={this.props.post} user={this.props.post.user} addNewComment={this.props.addNewComment}/>
+                      <LikeButton addLike={this.props.addLike} post={this.props.post} user={this.props.post.user}/>
+                      {this.renderLikes()}
+                    </div>
                   </div>
-
-
-
-
-                    <section className="post-heading">
-                      <div className="row">
-                        <div className="col-md-3">
-                          <div className="media">
-                            <div className="media-left">
-                              <a href="#">
-
-                              </a>
-                            </div>
-                            <div className="media-body">
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </section>
-                <div className="comment-like-wrapper">
-                  <LikeButton addLike={this.props.addLike} post={this.props.post} user={this.props.post.user}/>
-                  <NewCommentForm handleAddComment={this.handleAddComment} post={this.props.post} user={this.props.post.user} addNewComment={this.props.addNewComment}/>
-                </div>
+                  <hr></hr>
                   <div className="comments-div">
+                    <ul>
                     {
                       this.state.commentsOnPost.map(comment => {
-                        return <div key={comment.id}>{comment.content}</div>
+                        return <li key={comment.id}>{comment.content} </li>
                       })
                     }
+                    </ul>
                   </div>
-
+                </section>
               </Fragment>
               :
               null

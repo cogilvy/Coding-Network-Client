@@ -1,5 +1,5 @@
 .App {
-  font-family: Helvetica;
+  font-family: monospace;
 }
 
 .App-logo {
@@ -320,4 +320,20 @@
    position: absolute;
    bottom: 0;
    margin-bottom: none;
+}
+
+.comment-like-wrapper {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.comments-div {
+  text-align: left;
+}
+
+.likes {
+  font-size: 22px;
+  margin-left: 5%;
+  margin-top: 1%;
 }

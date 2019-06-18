@@ -61,8 +61,6 @@ class Post extends Component {
   }
 
   render() {
-    console.log("userLikes", this.state.userLikes, this.props.post.id);
-    console.log("postLikes", this.props.post.likes, this.props.post.id);
     const content = this.props.post.content
     return (
       <Fragment>
