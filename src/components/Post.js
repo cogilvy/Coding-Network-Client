@@ -12,13 +12,13 @@ class Post extends Component {
   renderLikes = () => {
     switch (this.props.post.likes) {
       case 0:
-        return <p>{this.props.post.likes.length} Likes</p>
+        return <Fragment>{this.props.post.likes.length} Likes</Fragment>
         // break;
       case 1:
-        return <p>{this.props.post.likes.length} Like</p>
+        return <Fragment>{this.props.post.likes.length} Like</Fragment>
         // break;
       default:
-        return <p>{this.props.post.likes.length} Likes</p>
+        return <Fragment>{this.props.post.likes.length} Likes</Fragment>
     }
   }
 
@@ -49,7 +49,7 @@ class Post extends Component {
               <hr></hr>
               <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justifyContent":"space-between"}}>
                 <div>
-                  <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-thumbs-up"></i>({this.props.post.likes.length}) Like</button>
+                  {this.renderLikes()}
                   <button data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
                   <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-share-alt"></i> Share</button>
                 </div>

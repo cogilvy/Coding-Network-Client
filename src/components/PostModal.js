@@ -10,6 +10,19 @@ class PostModal extends Component {
     commentsOnPost: this.props.post.comments
   }
 
+  renderLikes = () => {
+    switch (this.props.post.likes) {
+      case 0:
+        return <Fragment>{this.props.post.likes.length} Likes</Fragment>
+        // break;
+      case 1:
+        return <Fragment>{this.props.post.likes.length} Like</Fragment>
+        // break;
+      default:
+        return <Fragment>{this.props.post.likes.length} Likes</Fragment>
+    }
+  }
+
   handleModalClick = () => {
     // console.log(this.state.postToView)
 
@@ -53,10 +66,17 @@ class PostModal extends Component {
 
                   <hr></hr>
                   <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justifyContent":"space-between"}}>
-                    <div>
-                      <LikeButton post={this.props.post} user={this.props.post.user}/>
-                      <button  data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
-                    </div>
+
+
+
+                  <div className="category-likes">
+                    <p>Category: {this.props.post.category}    </p>
+                    {this.renderLikes()}
+                  </div>
+
+
+
+
                     <section className="post-heading">
                       <div className="row">
                         <div className="col-md-3">
@@ -75,14 +95,18 @@ class PostModal extends Component {
                     </section>
                   </div>
                 </section>
-                <div className="comments-div">
+                <div className="comment-like-wrapper">
+                  <LikeButton post={this.props.post} user={this.props.post.user}/>
                   <NewCommentForm handleAddComment={this.handleAddComment} post={this.props.post} user={this.props.post.user} addNewComment={this.props.addNewComment}/>
-                  {
-                    this.state.commentsOnPost.map(comment => {
-                      return <div>{comment.content}</div>
-                    })
-                  }
                 </div>
+                  <div className="comments-div">
+                    {
+                      this.state.commentsOnPost.map(comment => {
+                        return <div>{comment.content}</div>
+                      })
+                    }
+                  </div>
+
               </Fragment>
               :
               null
@@ -97,3 +121,7 @@ class PostModal extends Component {
 
 export default PostModal;
 //                       <button type="button" className="btn btn-light"><i className="glyphicon glyphicon-thumbs-up"></i>({this.props.post.likes.length}) Like</button>
+// <div>
+//   <LikeButton post={this.props.post} user={this.props.post.user}/>
+//   <button  data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} type="button" className="btn btn-light"><i className="glyphicon glyphicon-comment"></i> Comments</button>
+// </div>

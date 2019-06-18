@@ -65,6 +65,14 @@
   border-radius: 5px;
   background-color: #fafafa;
 }
+.new-comment-form-div {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.category-likes {
+  position: absolute;
+}
 
 .post-user {
   display: inline-block;
