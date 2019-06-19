@@ -34,7 +34,6 @@
   display: inline-block;
   /* justify-content: space-between; */
   align-items: center;
-  background-color: #1f61a8;
 
 }
 
@@ -57,12 +56,11 @@
 
 .post-container {
   position: relative;
-  padding: 5px;
   width: auto;
   text-align: center;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(1,1fr);
   background-color: #edf0f5;
   height: auto;
 }
@@ -75,9 +73,7 @@
   margin-top: 25px;
   padding: 25px;
   width: 65%;
-  height: 200px;
-  /* border-left: 1px solid #6b93de; */
-  /* border-top: 1px solid #6b93de; */
+  height: auto;
   border-radius: 5px;
   background-color: #fafafa;
 }
@@ -350,8 +346,24 @@
   text-align: left;
 }
 
+.row {
+  width: 100%;
+}
+
 .likes {
   font-size: 22px;
   margin-left: 5%;
   margin-top: 1%;
+}
+
+.profile {
+  display: flex;
+}
+
+.followers {
+  font-size: 25px;
+  text-align: center;
+  overflow: hidden;
+  width: 70%;
+  justify-content: center;
 }

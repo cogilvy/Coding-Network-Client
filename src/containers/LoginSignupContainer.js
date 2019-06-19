@@ -28,7 +28,7 @@ class LoginSignup extends Component {
 
 
         <div className="homepage-div-container">
-          <img style={{opacity:'.45', borderRadius: '5px'}} src="https://videohive.img.customer.envatousercontent.com/files/87d66970-9b50-4f3e-b0e2-c23420f20c63/inline_image_preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&max-h=8000&max-w=590&s=1355e5d4d2dcfbd4f5013bb54c91c691" />
+          <img style={{opacity:'1', borderRadius: '5px'}} src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3465&q=80" />
         </div>
 
         <div className="credentials-div">

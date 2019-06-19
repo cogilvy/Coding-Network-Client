@@ -3,7 +3,9 @@ import './App.css';
 import SearchBar from "./components/SearchBar"
 import LoginSignupContainer from "./containers/LoginSignupContainer"
 import PostContainer from "./containers/PostContainer"
+import ProfileContainer from "./containers/ProfileContainer"
 import NewPostForm from './components/NewPostForm'
+import NavBar from './components/NavBar'
 import TimeAgo from 'timeago-react'; // var TimeAgo = require('timeago-react');
 import UserContainer from './containers/UserContainer'
 
@@ -14,7 +16,8 @@ class App extends Component {
     isCreatingNewPost: false,
     postObjToView: {},
     isViewingProfile: false,
-    profileToView: null
+    profileToView: null,
+    buttonText: "My Profile"
   }
 
   componentDidMount() {
@@ -61,8 +64,6 @@ class App extends Component {
         post_id: commentObj.post.id
       })
     })
-
-
   }
 
   setCurrentUser = (user) => {
@@ -88,8 +89,6 @@ class App extends Component {
   }
 
   createNewPost = (postObj) => {
-
-
     fetch('http://localhost:3000/api/v1/posts', {
     // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/posts', {
       method: "POST",
@@ -124,10 +123,19 @@ class App extends Component {
 
   handleProfileClick = (event) => {
     event.preventDefault()
-    this.setState({
-      isViewingProfile: !this.state.isViewingProfile,
-      profileToView: this.state.currentUser
-    })
+    if (this.state.buttonText === "My Profile") {
+      this.setState({
+        isViewingProfile: !this.state.isViewingProfile,
+        profileToView: this.state.currentUser,
+        buttonText: "Back to News Feed"
+      })
+    } else {
+      this.setState({
+        isViewingProfile: !this.state.isViewingProfile,
+        profileToView: this.state.currentUser,
+        buttonText: "My Profile"
+      })
+    }
   }
 
   viewHomePageClick = (event) => {
@@ -138,14 +146,17 @@ class App extends Component {
     })
   }
 
-  changeProfileToView = (userObj) => {
+  changeProfileToView = (event, userObj) => {
+    event.preventDefault()
     this.setState({
       profileToView: userObj,
-      isViewingProfile: !this.state.isViewingProfile
+      isViewingProfile: !this.state.isViewingProfile,
+      buttonText: "Back To News Feed"
     })
   }
 
   render(){
+    console.log(this.state.isViewingProfile);
     // <NavBar currentUser={this.state.currentUser} logout={this.logout} />
     return (
       <div className="App">
@@ -158,19 +169,19 @@ class App extends Component {
                     <a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>
                     <SearchBar />
                     <div>
-                      <button onClick={this.handleProfileClick} style={{"margin-right":"5px"}}>My Profile</button>
+                      <button onClick={this.handleProfileClick} style={{"marginRight":"5px"}}>{this.state.buttonText}</button>
                       <button onClick={this.logout}>Logout</button>
                     </div>
                 </div>
               </Fragment>
               :
-              <div><p>LOGO</p></div>
+              <div className="navsl"><a className="logo" href="" onClick={this.viewHomePageClick}><img style={{height:"70px"}} src="./infinity.svg"/>BookFace</a></div>
           }
         {
           this.state.currentUser ?
             this.state.isViewingProfile ?
             <div className="wrapper">
-              <UserContainer changeProfileToView={this.changeProfileToView} profileToView={this.state.profileToView} currentUser={this.state.currentUser}/>
+              <ProfileContainer changeProfileToView={this.changeProfileToView} profileToView={this.state.profileToView} currentUser={this.state.currentUser}/>
             </div>
             :
             <div className="wrapper">
