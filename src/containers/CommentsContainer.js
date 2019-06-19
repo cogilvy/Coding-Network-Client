@@ -6,7 +6,7 @@ class CommentsContainer extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div style={{marginBottom:"5%"}} className="container">
         <h1>Comments:</h1>
         {
           this.props.comments ?

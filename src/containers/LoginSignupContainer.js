@@ -28,20 +28,18 @@ class LoginSignup extends Component {
 
 
         <div className="homepage-div-container">
-          <img style={{opacity:'1', borderRadius: '5px'}} src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3465&q=80" />
+
         </div>
 
         <div className="credentials-div">
           {
             this.state.signupIsClicked ?
               <Fragment>
-                <Signup setCurrentUser={this.props.setCurrentUser} />
-                <button onClick={this.changeSignup}>Back to Login</button>
+                <Signup setCurrentUser={this.props.setCurrentUser} changeSignup={this.changeSignup} />
               </Fragment>
               :
               <Fragment>
-                <Login setCurrentUser={this.props.setCurrentUser} />
-                <button onClick={this.changeSignup}>Sign Up !</button>
+                <Login setCurrentUser={this.props.setCurrentUser} changeSignup={this.changeSignup} />
               </Fragment>
           }
         </div>
@@ -50,6 +48,7 @@ class LoginSignup extends Component {
     );
   }
 }
+export default LoginSignup;
 
 // <Route path="/login" render={(routerProps) => {
 //       return <Login setCurrentUser={this.setCurrentUser} {...routerProps}/>
@@ -71,6 +70,3 @@ class LoginSignup extends Component {
 //     }
 //
 // </div>
-
-
-export default LoginSignup;

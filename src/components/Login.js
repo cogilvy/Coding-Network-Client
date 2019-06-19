@@ -47,13 +47,15 @@ class Login extends React.Component {
         <br/><br/><br/>
         <h1>Please Enter Your Login Details</h1>
         <form className="form-style-9" onSubmit={this.handleSubmit}>
-          <label>Username</label>
-          <input onChange={this.handleChange} type="text" name="username" placeholder="username..."></input>
+          <label style={{marginLeft: "6%"}}>Username</label>
+          <input style={{marginLeft: "3%"}} onChange={this.handleChange} type="text" name="username" ></input>
           <br></br>
-          <label>Password</label>
-          <input onChange={this.handleChange} type="password" name="password" placeholder="password..."></input>
+          <label style={{marginLeft: "6%"}}>Password</label>
+          <input style={{marginLeft: "3%"}} onChange={this.handleChange} type="password" name="password" ></input>
           <br></br>
-          <input type="submit" value="Login"></input>
+          <br></br>
+          <input style={{marginLeft: "25%"}} type="submit" value="Login"></input>
+          <button style={{marginLeft: "1%"}} onClick={this.props.changeSignup}>Sign Up!</button>
         </form>
       </div>
     )
