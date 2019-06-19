@@ -65,6 +65,7 @@
   grid-template-columns: repeat(1,1fr);
   background-color: #edf0f5;
   height: auto;
+  padding-bottom: 50px;
 }
 
 .single-post {

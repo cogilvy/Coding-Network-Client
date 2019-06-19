@@ -131,7 +131,7 @@ class App extends Component {
   }
 
   viewHomePageClick = (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     this.setState({
       isCreatingNewPost: false,
       isViewingProfile: false
@@ -155,7 +155,7 @@ class App extends Component {
             this.state.currentUser ?
               <Fragment>
                 <div className="navsl">
-                    <a className="logo" href="" onClick={this.viewHomePageClick}><img style={{height:"70px"}} src="./infinity.svg"/></a>
+                    <a className="logo" href="/" onClick={this.viewHomePageClick}><img style={{height:"70px"}} src="./infinity.svg"/></a>
                     <p>Welcome to BookFace, {this.state.currentUser.username}! <small className="text-muted">(The best social network...)</small></p>
                     <a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>
                     <SearchBar />
