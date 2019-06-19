@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Post from '../components/Post'
 import NewPostForm from '../components/NewPostForm'
-
+import PostFilter from '../components/PostFilter'
 
 class PostContainer extends Component {
 
@@ -37,7 +37,9 @@ class PostContainer extends Component {
 
   render() {
     return (
+
       <Fragment>
+        <PostFilter/>
         {
           this.props.isCreatingNewPost ?
           <NewPostForm currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} createNewPost={this.props.createNewPost}/>
