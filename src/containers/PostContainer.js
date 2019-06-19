@@ -18,7 +18,6 @@ class PostContainer extends Component {
     // fetch(`https://threes-nutz-backend.herokuapp.com/api/v1/posts`)
     .then(res => res.json())
     .then(data => {
-
       this.setState({
         posts: data,
         filteredPosts: data
@@ -100,6 +99,7 @@ class PostContainer extends Component {
           <Fragment>
           <PostFilter handleSubmitSearch={this.handleSubmitSearch} handleSelectChange={this.handleSelectChange}/>
           <div className="post-container">
+            <h1>News Feed:</h1>
           {
             this.state.posts === [1] ?
             null

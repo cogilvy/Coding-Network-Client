@@ -7,8 +7,7 @@ class Post extends Component {
 
   state = {
     isViewingModal: false,
-    likes: this.props.post.likes ? this.props.post.likes.length : null,
-    userLikes: this.props.currentUser.likes
+    likes: this.props.post.likes ? this.props.post.likes.length : null
   }
 
   renderLikes = () => {

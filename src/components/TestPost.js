@@ -9,24 +9,7 @@ class TestPost extends Component {
         <div className="panel panel-default">
           <div className="panel-body">
             <section className="post-heading">
-              <div className="row">
-                <div className="col-md-3">
-                  <div className="media">
-                    <div className="media-left">
-                      <a href="#">
-                        <img src={Faker.image.avatar()} width="40" height="40" alt="..."/>
-                      </a>
-                    </div>
-                    <div className="media-body">
-                      <h4 className="media-heading">{this.props.post.user? this.props.post.user.username : null}</h4>
-                      <a href="#" className="anchor-time">{Math.floor(Math.random() * 60)} mins ago</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-9">
-                  <strong>{this.props.post.title}</strong>
-                </div>
-              </div>
+              
             </section>
             <section className="post-body">
               <p>{this.props.post.content}</p>

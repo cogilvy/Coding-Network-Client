@@ -49,10 +49,8 @@ class PostModal extends Component {
   handleUserClick = (event) => {
     event.preventDefault()
     const userObj = this.props.post.user
-    this.props.changeProfileToView(userObj)
+    this.props.changeProfileToView(event, userObj)
     document.querySelector("body").classList.toggle("modal-open")
-
-    // $('.modal').modal('hide')
   }
 
   render() {
