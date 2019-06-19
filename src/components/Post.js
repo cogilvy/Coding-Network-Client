@@ -60,6 +60,15 @@ class Post extends Component {
     })
   }
 
+  handleUserClick = (event) => {
+    event.preventDefault()
+    const userObj = this.props.post.user
+    this.props.changeProfileToView(userObj)
+    document.querySelector("body").classList.toggle("modal-open")
+
+    // $('.modal').modal('hide')
+  }
+
   render() {
     const content = this.props.post.content
     return (
@@ -88,7 +97,7 @@ class Post extends Component {
                           </a>
                         </div>
                         <div className="media-body">
-                          <h4 className="media-heading">{this.props.post.user? this.props.post.user.username : null}</h4>
+                          <h4 className="media-heading"><a onClick={this.handleUserClick} href="">{this.props.post.user? this.props.post.user.username : null}</a></h4>
                         </div>
                       </div>
                     </div>
