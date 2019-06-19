@@ -33,13 +33,15 @@ class TestProfile extends Component {
 
   followMe = (user) => {
     const curUser = this.props.currentUser
-    console.log(curUser.followers);
+    // console.log(curUser.followers);
   }
 
   render() {
-    console.log(this.props.user.followers.includes(this.props.currentUser));
-    console.log("currentUser", this.props.currentUser);
-    console.log("followers", this.props.user.followers);
+    // console.log(this.props.user.followers.includes(this.props.currentUser));
+    // console.log("currentUser", this.props.currentUser);
+    // console.log("followers", this.props.user.followers);
+    console.log("asdfasdf", this.state.followers, this.props.currentUser);
+    // debugger
     return (
       <div>
         <h2>{this.props.user.username}</h2>

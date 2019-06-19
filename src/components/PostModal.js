@@ -56,6 +56,8 @@ class PostModal extends Component {
   }
 
   render() {
+
+    // debugger
     return (
       <div id="viewing-modal" className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -96,7 +98,7 @@ class PostModal extends Component {
                     <ul>
                     {
                       this.state.commentsOnPost.map(comment => {
-                        return <li key={comment.id}>{comment.content}</li>
+                        return <li key={comment.id}>{comment.content} - <a onClick={this.handleUserClick} href=""> {this.props.currentUser.username} </a></li>
                       })
                     }
                     </ul>

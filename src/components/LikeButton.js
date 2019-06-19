@@ -11,7 +11,7 @@ class LikeButton extends Component {
   render() {
     return(
       <Fragment>
-        <button onClick={this.props.addLike} type="button" style={{position:"absolute", border:"1px solid lightblue", height:"44px"}} className="btn btn-light"><i className="glyphicon glyphicon-thumbs-up"></i></button>
+        <button onClick={this.props.addLike} type="button" style={{border:"1px solid lightblue"}} className="btn btn-light"><i className="glyphicon glyphicon-thumbs-up"></i></button>
       </Fragment>
     )
   }
