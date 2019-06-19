@@ -69,7 +69,7 @@ class Post extends Component {
           this.props.post.user ?
           <Fragment>
             <strong><p>{this.props.post.title}</p></strong>
-            <p className="post-content">{content.substring(0,100)}...</p>
+            <p className="post-content">{content.substring(0,110)}...</p>
             <section className="post-footer">
               <hr></hr>
               <div className="post-footer-option container" style={{"display":"flex", "width":"auto", "justifyContent":"space-between"}}>
