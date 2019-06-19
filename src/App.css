@@ -56,7 +56,7 @@
 
 .post-container {
   position: relative;
-  width: auto;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
   display: grid;
@@ -265,9 +265,8 @@
   font-size: 17px;
   vertical-align: middle;
   color: rgb(54, 124, 255);
-  height: 30px;
+  height: 5%;
   display: inline;
-  padding-bottom: 9%;
 }
 
 .login-div {
@@ -369,4 +368,26 @@
   overflow: hidden;
   width: 70%;
   justify-content: center;
+}
+
+.side-bar {
+  margin-left: 1%;
+}
+
+.middle {
+  display: flex;
+}
+
+.comments {
+  font-size: 1vw;
+  display: block;
+  text-align: left;
+  box-shadow: 6px 6px 3px #8387d461;
+  margin: 0 auto;
+  margin-top: 25px;
+  padding: 25px;
+  width: 65%;
+  height: auto;
+  border-radius: 5px;
+  background-color: #fafafa;
 }

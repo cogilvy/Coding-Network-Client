@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import './App.css';
-import SearchBar from "./components/SearchBar"
 import LoginSignupContainer from "./containers/LoginSignupContainer"
 import PostContainer from "./containers/PostContainer"
 import ProfileContainer from "./containers/ProfileContainer"
@@ -146,16 +145,13 @@ class App extends Component {
     })
   }
 
-  changeProfileToView = (event, userObj) => {
-    event.preventDefault()
+  changeProfileToView = (userObj) => {
     this.setState({
       profileToView: userObj,
       isViewingProfile: !this.state.isViewingProfile,
       buttonText: "Back To News Feed"
     })
   }
-
-
 
   render(){
     console.log(this.state.isViewingProfile);
@@ -166,10 +162,11 @@ class App extends Component {
             this.state.currentUser ?
               <Fragment>
                 <div className="navsl">
-                    <a className="logo" href="/" onClick={this.viewHomePageClick}><img style={{height:"70px"}} src="./infinity.svg"/></a>
+                    <a className="logo" href="/" onClick={this.viewHomePageClick}><img style={{height:"50px"}} src="./infinity.svg"/></a>
                     <p>Welcome to BookFace, {this.state.currentUser.username}! <small className="text-muted">(The best social network...)</small></p>
-                    <a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>
-                    <SearchBar />
+                    <div>
+                      <p><a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>Create A Post</p>
+                    </div>
                     <div>
                       <button onClick={this.handleProfileClick} style={{"marginRight":"5px"}}>{this.state.buttonText}</button>
                       <button onClick={this.logout}>Logout</button>

@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from 'react';
+import Faker from 'faker'
 import MyPostsContainer from "../containers/MyPostsContainer"
 import CommentsContainer from "../containers/CommentsContainer"
 import FollowersContainer from "../containers/FollowersContainer"
@@ -27,12 +28,14 @@ class ProfileContainer extends Component {
 
     return (
       <Fragment>
-        <h1 style={{"text-align": "center"}}>{currentProfile ? currentProfile.username : null}'s Profile</h1>
+        <div style={{marginBottom: "7%"}}>
+          <h1 style={{"text-align": "center"}}><img style={{marginLeft:"1%", float: "left"}} src={Faker.image.avatar()}/>{currentProfile ? currentProfile.username : null}'s Profile</h1>
+        </div>
         <div className="profile">
           <div className="row">
             <div className="col-md-8">
               <MyPostsContainer posts={currentProfile ? currentProfile.posts : null}/>
-              <CommentsContainer comments={currentProfile ? currentProfile.comments : null} />
+              <CommentsContainer changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} currentUser={this.props.currentUser} comments={currentProfile ? currentProfile.comments : null} />
             </div>
             <div className="col-md-4">
               <FollowersContainer followers={currentProfile ? currentProfile.followers : null}/>
