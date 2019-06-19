@@ -61,8 +61,15 @@ class Post extends Component {
 
   handleUserClick = (event) => {
     event.preventDefault()
-    const userObj = this.props.post.user
-    this.props.changeProfileToView(userObj)
+    console.log(event.target.otherUser);
+    if (event.target.name === "otherUser") {
+      const userObj = this.props.post.user
+      this.props.changeProfileToView(userObj)
+    } else {
+      const userObj = this.props.post.user
+      this.props.changeProfileToView(userObj)
+    }
+
     document.querySelector("body").classList.toggle("modal-open")
 
     // $('.modal').modal('hide')
@@ -113,7 +120,7 @@ class Post extends Component {
         }
         </div>
         <div>
-          <PostModal likes={this.state.likes} addLike={this.addLike} changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} postObjToView={this.props.postObjToView} setCurrentUserAfter={this.props.setCurrentUserAfter} currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} post={this.props.post}/>
+          <PostModal openProfile={this.handleUserClick} likes={this.state.likes} addLike={this.addLike} changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} postObjToView={this.props.postObjToView} setCurrentUserAfter={this.props.setCurrentUserAfter} currentUser={this.props.currentUser} addNewComment={this.props.addNewComment} post={this.props.post}/>
 
         </div>
       </Fragment>

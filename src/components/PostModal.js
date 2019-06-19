@@ -5,6 +5,7 @@ import NewCommentForm from './NewCommentForm'
 import LikeButton from './LikeButton'
 
 let allUsers = []
+let theUser = {}
 
 class PostModal extends Component {
 
@@ -53,6 +54,17 @@ class PostModal extends Component {
     document.querySelector("body").classList.toggle("modal-open")
   }
 
+  renderSingleComment = (comment) => {
+
+    theUser = this.findUser(comment.user_id)
+
+    if (theUser) {
+      return <li key={comment.id}>{comment.content} - <strong>{theUser.username}</strong></li>
+    } else {
+      return <li key={comment.id}>{comment.content}></li>
+    }
+  }
+
   render() {
     return (
       <div id="viewing-modal" className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -93,9 +105,7 @@ class PostModal extends Component {
                   <div className="comments-div">
                     <ul>
                     {
-                      this.state.commentsOnPost.map(comment => {
-                        return <li key={comment.id}>{comment.content} - <a onClick={this.handleUserClick} href=""> {this.props.currentUser.username} </a></li>
-                      })
+                      this.state.commentsOnPost.map(comment => this.renderSingleComment(comment))
                     }
                     </ul>
                   </div>
