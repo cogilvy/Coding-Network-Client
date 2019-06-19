@@ -160,7 +160,7 @@ class App extends Component {
                     <a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>
                     <SearchBar />
                     <div>
-                      <button onClick={this.handleProfileClick} style={{"margin-right":"5px"}}>My Profile</button>
+                      <button onClick={this.handleProfileClick} style={{"marginRight":"5px"}}>My Profile</button>
                       <button onClick={this.logout}>Logout</button>
                     </div>
                 </div>

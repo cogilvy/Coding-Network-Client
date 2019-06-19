@@ -4,7 +4,6 @@ class NewCommentForm extends Component {
 
   handleClick = (event) => {
     event.preventDefault()
-    // console.log(event.target.firstChild.value);
 
 
     let commentObj = {
@@ -12,9 +11,7 @@ class NewCommentForm extends Component {
       user: this.props.currentUser,
       post: this.props.post
     }
-    // debugger
 
-    console.log("this.props.currentUser:",this.props.currentUser)
     this.props.addNewComment(commentObj)
     this.props.handleAddComment(commentObj)
   }

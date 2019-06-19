@@ -71,6 +71,7 @@ class Post extends Component {
 
   render() {
     const content = this.props.post.content
+
     return (
       <Fragment>
         <div onClick={this.handleModalClick} data-toggle="modal" data-target={".bd-example-modal-lg-" + this.props.post.id} key={this.props.post.id} className="single-post">

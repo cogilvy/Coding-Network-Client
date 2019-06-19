@@ -5,12 +5,13 @@ import NewCommentForm from './NewCommentForm'
 import LikeButton from './LikeButton'
 
 let allUsers = []
-
+let theUser = {}
 class PostModal extends Component {
 
   state = {
     postToView: this.props.post,
-    commentsOnPost: this.props.post.comments
+    commentsOnPost: this.props.post.comments,
+    allUsers: []
   }
 
   renderLikes = () => {
@@ -36,32 +37,44 @@ class PostModal extends Component {
     fetch('http://localhost:3000/api/v1/users')
     .then(res => res.json())
     .then(data => {
-      allUsers = data
+      this.setState({
+        allUsers: data
+      })
     })
   }
 
   findUser = (userID) => {
-    return allUsers.find(user => {
+    return this.state.allUsers.find(user => {
       return user.id === userID
     })
   }
 
-  handleUserClick = (event) => {
+  handleUserClick = (event, userWhoCommented) => {
     event.preventDefault()
-    const userObj = this.props.post.user
+    const userObj = theUser
     this.props.changeProfileToView(userObj)
     document.querySelector("body").classList.toggle("modal-open")
+  }
 
-    // $('.modal').modal('hide')
+  renderSingleComment = (comment) => {
+
+    theUser = this.findUser(comment.user_id)
+
+    if (theUser) {
+      return <li key={comment.id}>{comment.content} - <a onClick={this.handleUserClick} href="">{theUser.username}</a></li>
+    } else {
+      return <li key={comment.id}>{comment.content}></li>
+    }
+
   }
 
   render() {
-
     // debugger
+    // console.log(this.state.commentsOnPost);
     return (
       <div id="viewing-modal" className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
+        <div className="modal-dialog modal-lg">
+          <div className="modal-content">
             {
               this.props.post.user ?
               <Fragment>
@@ -97,9 +110,7 @@ class PostModal extends Component {
                   <div className="comments-div">
                     <ul>
                     {
-                      this.state.commentsOnPost.map(comment => {
-                        return <li key={comment.id}>{comment.content} - <a onClick={this.handleUserClick} href=""> {this.props.currentUser.username} </a></li>
-                      })
+                      this.state.commentsOnPost.map(comment => this.renderSingleComment(comment))
                     }
                     </ul>
                   </div>

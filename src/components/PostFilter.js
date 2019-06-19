@@ -17,6 +17,7 @@ class PostFilter extends Component {
           <input type="submit" value="Search"></input>
         </form>
 
+        <p>Display All Posts By Category:</p>
         <select style={{position:"absolute",top:"100px",zIndex:"2"}} onChange={this.props.handleSelectChange}>
           <optgroup label="Select a Category:">
             <option>All Posts</option>
