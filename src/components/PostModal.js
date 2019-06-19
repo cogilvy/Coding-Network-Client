@@ -51,7 +51,8 @@ class PostModal extends Component {
 
   handleUserClick = (event, userWhoCommented) => {
     event.preventDefault()
-    const userObj = theUser
+    const userObj = this.props.post.user
+    // const userObj = theUser
     this.props.changeProfileToView(userObj)
     document.querySelector("body").classList.toggle("modal-open")
   }
@@ -69,8 +70,6 @@ class PostModal extends Component {
   }
 
   render() {
-    // debugger
-    // console.log(this.state.commentsOnPost);
     return (
       <div id="viewing-modal" className={"modal fade bd-example-modal-lg-" + this.props.post.id} tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg">

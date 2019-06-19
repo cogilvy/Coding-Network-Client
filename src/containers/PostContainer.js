@@ -96,24 +96,26 @@ class PostContainer extends Component {
           this.props.isCreatingNewPost ?
           <NewPostForm currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} createNewPost={this.props.createNewPost}/>
           :
-          <Fragment>
-          <PostFilter handleSubmitSearch={this.handleSubmitSearch} handleSelectChange={this.handleSelectChange}/>
-          <div className="post-container">
-            <h1>News Feed:</h1>
-          {
-            this.state.posts === [1] ?
-            null
-            :
-            this.state.filteredPosts.map(post => {
-              return (
-                <Fragment>
-                  <Post changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
-                </Fragment>
-              )
-            })
-          }
+          <div className="row">
+            <div className="side-bar col-md-2">
+              <PostFilter handleSubmitSearch={this.handleSubmitSearch} handleSelectChange={this.handleSelectChange}/>
+            </div>
+            <div className="post-container col-md-10">
+              <h1>News Feed:</h1>
+            {
+              this.state.posts === [1] ?
+              null
+              :
+              this.state.filteredPosts.map(post => {
+                return (
+                  <Fragment>
+                    <Post changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
+                  </Fragment>
+                )
+              })
+            }
+            </div>
           </div>
-          </Fragment>
         }
       </Fragment>
     );
