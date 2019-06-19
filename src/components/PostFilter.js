@@ -19,11 +19,13 @@ class PostFilter extends Component {
 
         <p>Display All Posts By Category:</p>
         <select style={{position:"absolute",top:"100px",zIndex:"2"}} onChange={this.props.handleSelectChange}>
-          <optgroup label="Select a Category:">
+
+            <option default disabled>Select a Category:</option>
             <option>All Posts</option>
             <option>Technology</option>
-            <option>Pop-Culture</option>
-          </optgroup>
+            <option>Sports</option>
+            <option>News</option>
+
         </select>
       </div>
     );

@@ -74,7 +74,7 @@
   margin-top: 25px;
   padding: 25px;
   width: 65%;
-  height: auto;
+  height: 100%;
   border-radius: 5px;
   background-color: #fafafa;
 }
@@ -262,7 +262,7 @@
 .nav-icon {
   margin-left: 10px;
   margin-right: 15px;
-  font-size: 17px;
+  font-size: 1vw;
   vertical-align: middle;
   color: rgb(54, 124, 255);
   height: 5%;

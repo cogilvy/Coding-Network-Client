@@ -141,7 +141,8 @@ class App extends Component {
     // event.preventDefault()
     this.setState({
       isCreatingNewPost: false,
-      isViewingProfile: false
+      isViewingProfile: false,
+      buttonText: "My Profile"
     })
   }
 
