@@ -145,6 +145,8 @@ class App extends Component {
     })
   }
 
+
+
   render(){
     // <NavBar currentUser={this.state.currentUser} logout={this.logout} />
     return (
