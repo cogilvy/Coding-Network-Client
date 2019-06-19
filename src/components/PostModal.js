@@ -51,6 +51,7 @@ class PostModal extends Component {
 
   handleUserClick = (event, userWhoCommented) => {
     event.preventDefault()
+<<<<<<< HEAD
     const userObj = theUser
     this.props.changeProfileToView(userObj)
     document.querySelector("body").classList.toggle("modal-open")
@@ -66,6 +67,11 @@ class PostModal extends Component {
       return <li key={comment.id}>{comment.content}></li>
     }
 
+=======
+    const userObj = this.props.post.user
+    this.props.changeProfileToView(event, userObj)
+    document.querySelector("body").classList.toggle("modal-open")
+>>>>>>> bfaef16dcf9d3ab9da76f445502519617f32400a
   }
 
   render() {
