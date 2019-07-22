@@ -19,7 +19,7 @@ class Profile extends Component {
 
 
   componentWillMount() {
-    fetch(`http://localhost:3000/api/v1/posts`)
+    fetch(`http://the-coding-network-backend.herokuapp.com/api/v1/posts`)
     .then(res => res.json())
     .then(postsData => {
       let allCommentDict = {}
@@ -33,7 +33,7 @@ class Profile extends Component {
       })
     })
 
-    fetch(`http://localhost:3000/api/v1/comments`)
+    fetch(`http://the-coding-network-backend.herokuapp.com/api/v1/comments`)
     .then(res => res.json())
     .then(commentsData => {
       this.setState({
@@ -69,7 +69,6 @@ class Profile extends Component {
   // return myPosts.map(post => {
   //   return <Post changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
   // })
-
   }
 
 

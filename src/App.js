@@ -22,8 +22,7 @@ class App extends Component {
   componentDidMount() {
     const token = localStorage.getItem('token')
     if (token) {
-      fetch("http://localhost:3000/api/v1/auto_login", {
-      // fetch("https://threes-nutz-backend.herokuapp.com/api/v1/auto_login", {
+      fetch("http://the-coding-network-backend.herokuapp.com/api/v1/auto_login", {
         headers: {
           "Authorization": token
         }
@@ -32,7 +31,6 @@ class App extends Component {
       .then(response => {
         if (response.errors) {
           localStorage.removeItem("user_id")
-          // alert(response.errors)
         } else {
           this.setState({
             currentUser: response
@@ -49,9 +47,8 @@ class App extends Component {
   }
 
   addNewComment = (commentObj) => {
-    // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/comments', {
     console.log(commentObj);
-    fetch("http://localhost:3000/api/v1/comments", {
+    fetch("http://the-coding-network-backend.herokuapp.com/api/v1/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -88,8 +85,7 @@ class App extends Component {
   }
 
   createNewPost = (postObj) => {
-    fetch('http://localhost:3000/api/v1/posts', {
-    // fetch('https://threes-nutz-backend.herokuapp.com/api/v1/posts', {
+    fetch('http://the-coding-network-backend.herokuapp.com/api/v1/posts', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -155,18 +151,17 @@ class App extends Component {
   }
 
   render(){
-    console.log(this.state.isViewingProfile);
-    // <NavBar currentUser={this.state.currentUser} logout={this.logout} />
     return (
       <div className="App">
+        <img className="source-image" src="https://images.unsplash.com/photo-1490826212256-caefa02bc772?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2832&q=80"></img>
           {
             this.state.currentUser ?
               <Fragment>
                 <div className="navsl">
                     <a className="logo" href="/" onClick={this.viewHomePageClick}><img style={{height:"50px"}} src="./infinity.svg"/></a>
-                    <p>Welcome to BookFace, {this.state.currentUser.username}! <small className="text-muted">(The best social network...)</small></p>
+                    <p>Welcome to The Coding Network, {this.state.currentUser.username}!</p>
                     <div>
-                      <p><a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>Create A Post</p>
+                      <p><a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>New Post</p>
                     </div>
                     <div>
                       <button onClick={this.handleProfileClick} style={{"marginRight":"5px"}}>{this.state.buttonText}</button>
@@ -175,7 +170,7 @@ class App extends Component {
                 </div>
               </Fragment>
               :
-              <div className="navsl"><a className="logo" href="" onClick={this.viewHomePageClick}><img style={{height:"70px"}} src="./infinity.svg"/>BookFace</a></div>
+              <div className="navsl"><a className="logo" href="" onClick={this.viewHomePageClick}><img style={{height:"70px"}} src="./infinity.svg"/>The Coding Network</a></div>
           }
         {
           this.state.currentUser ?

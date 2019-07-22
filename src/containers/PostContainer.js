@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import Post from '../components/Post'
 import NewPostForm from '../components/NewPostForm'
 import PostFilter from '../components/PostFilter'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 class PostContainer extends Component {
 
@@ -14,8 +16,11 @@ class PostContainer extends Component {
   // https://threes-nutz-backend.herokuapp.com/api/v1/
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/posts`)
-    // fetch(`https://threes-nutz-backend.herokuapp.com/api/v1/posts`)
+    this.fetchPosts()
+  }
+
+  fetchPosts = () => {
+    fetch(`http://the-coding-network-backend.herokuapp.com/api/v1/posts`)
     .then(res => res.json())
     .then(data => {
       this.setState({
@@ -56,64 +61,73 @@ class PostContainer extends Component {
 
   handleSubmitSearch = (event) => {
     event.preventDefault()
-    let searchTerm = event.target.firstElementChild.value
-    let searchCat = event.target.firstElementChild.nextElementSibling.value
+    let searchTerm = event.target.searchBar.value
+    let searchCat = event.target.category.value
+    const MySwal = withReactContent(Swal)
 
     // let postsAfterSearch = []
     if(searchCat === "Username"){
       let postsAfterSearch = this.state.posts.filter(post => {
-        return post.user.username.includes(searchTerm)
+        return post.user.username.toLowerCase().includes(searchTerm.toLowerCase())
       })
+      postsAfterSearch.length > 0 ?
       this.setState({
         filteredPosts: postsAfterSearch
       })
+      :
+      MySwal.fire(<p>There were no users with the username `'${searchTerm}'`.<br></br><br></br> Please try again.</p>)
     } else if (searchCat === "Post Title") {
       let postsAfterSearch = this.state.posts.filter(post => {
-        return post.title.includes(searchTerm)
+        return post.title.toLowerCase().includes(searchTerm.toLowerCase())
       })
+      postsAfterSearch.length > 0 ?
       this.setState({
         filteredPosts: postsAfterSearch
       })
+      :
+      MySwal.fire(<p>There were no posts with a title containing `'${searchTerm}'`. <br></br><br></br> Please try again.</p>)
     } else if (searchCat === "Category") {
       let postsAfterSearch = this.state.posts.filter(post => {
-        return post.category.includes(searchTerm)
+        return post.category.toLowerCase().includes(searchTerm.toLowerCase())
       })
+      postsAfterSearch.length > 0 ?
       this.setState({
         filteredPosts: postsAfterSearch
       })
+      :
+      MySwal.fire(<p>There were no categories with the name `'${searchTerm}'`. <br></br><br></br> Please try again.</p>)
     }
-    event.target.firstElementChild.value = ""
-
+    event.target.searchBar.value = ""
   }
 
   render() {
-    console.log(this.state.filteredPosts);
     return (
-
       <Fragment>
-
         {
           this.props.isCreatingNewPost ?
           <NewPostForm currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} createNewPost={this.props.createNewPost}/>
           :
-          <div className="row">
-            <div className="side-bar col-md-2">
-              <PostFilter handleSubmitSearch={this.handleSubmitSearch} handleSelectChange={this.handleSelectChange}/>
-            </div>
-            <div className="post-container col-md-10">
-              <h1>News Feed:</h1>
-            {
-              this.state.posts === [1] ?
-              null
-              :
-              this.state.filteredPosts.map(post => {
-                return (
-                  <Fragment>
-                    <Post changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
-                  </Fragment>
-                )
-              })
-            }
+          <div>
+            <h1 style={{textAlign: "center"}}>News Feed:</h1>
+            <div className="post-page">
+              <div className="side-filter">
+                <PostFilter fetchPosts={this.fetchPosts} handleSubmitSearch={this.handleSubmitSearch} handleSelectChange={this.handleSelectChange}/>
+              </div>
+              <div className="post-container">
+
+              {
+                this.state.posts === [1] ?
+                null
+                :
+                this.state.filteredPosts.map(post => {
+                  return (
+
+                      <Post changeProfileToView={this.props.changeProfileToView} profileToView={this.props.profileToView} currentUser={this.props.currentUser} setCurrentUserAfter={this.props.setCurrentUserAfter} addNewComment={this.props.addNewComment} onClick={this.viewSinglePost} key={post.id} post={post} />
+                    
+                  )
+                })
+              }
+              </div>
             </div>
           </div>
         }

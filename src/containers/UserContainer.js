@@ -10,7 +10,7 @@ class UserContainer extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/v1/users")
+    fetch("http://the-coding-network-backend.herokuapp.com/api/v1/users")
     .then(res => res.json())
     .then(data => {
       this.setState({

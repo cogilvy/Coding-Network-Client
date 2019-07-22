@@ -17,7 +17,7 @@ class Login extends React.Component {
   // https://threes-nutz-backend.herokuapp.com/api/v1/
   handleSubmit = (event) => {
     event.preventDefault()
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch("http://the-coding-network-backend.herokuapp.com/api/v1/login", {
     // fetch("https://threes-nutz-backend.herokuapp.com/api/v1/login", {
       method: "POST",
       headers: {

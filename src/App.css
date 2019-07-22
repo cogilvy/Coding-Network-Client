@@ -55,25 +55,20 @@
 }
 
 .post-container {
-  position: relative;
-  width: 100%;
+  width: 70%;
   text-align: center;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(1,1fr);
-  background-color: #edf0f5;
   height: auto;
-  padding-bottom: 50px;
 }
 
 .single-post {
   display: block;
   text-align: left;
   box-shadow: 6px 6px 3px #8387d461;
-  margin: 0 auto;
-  margin-top: 25px;
+  margin: 1% 0%;
   padding: 25px;
-  width: 65%;
+  width: 85%;
   height: 100%;
   border-radius: 5px;
   background-color: #fafafa;
@@ -277,6 +272,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 .credentials-div {
   position: absolute;
@@ -390,4 +386,29 @@
   height: auto;
   border-radius: 5px;
   background-color: #fafafa;
+}
+
+.source-image {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+,single-post hover {
+  cursor: pointer;
+}
+
+.select-div {
+  margin: 50% 20%;
+  width: 100%;
+  background-color: #fafafa;
+  border-radius: 5px;
+  padding: 5%;
+}
+
+.post-page {
+  display: flex;
+  justify-content: space-between;
 }

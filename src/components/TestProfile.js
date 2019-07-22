@@ -10,7 +10,7 @@ class TestProfile extends Component {
   followUser = (user) => {
     const curUser = this.props.currentUser
     if (!this.state.followers.includes(curUser)) {
-      fetch("http://localhost:3000/api/v1/follows", {
+      fetch("http://the-coding-network-backend.herokuapp.com/api/v1/follows", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

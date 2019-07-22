@@ -27,14 +27,13 @@ class PostModal extends Component {
   }
 
   handleAddComment = (commentObj) => {
-
     this.setState({
       commentsOnPost: [...this.state.commentsOnPost, commentObj]
     })
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/users')
+    fetch('http://the-coding-network-backend.herokuapp.com/api/v1/users')
     .then(res => res.json())
     .then(data => {
       allUsers = data
@@ -100,8 +99,6 @@ class PostModal extends Component {
                     </div>
                   </div>
                   <hr></hr>
-
-
                   <div className="comments-div">
                     <ul>
                     {
