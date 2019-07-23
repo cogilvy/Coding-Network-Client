@@ -5,9 +5,9 @@ class PostFilter extends Component {
   render() {
     return (
       <div className="select-div">
-        <div>
+        <div style={{margin: "0% 0% 0% 5%"}}>
           <form onSubmit={this.props.handleSubmitSearch}>
-            <label>Search by User, Category, or Title:</label>
+            <label>Search Posts by User, Category, or Title:</label>
             <br></br>
             <input style={{width: "90%"}} type="text" name="searchBar"></input>
             <br></br>

@@ -159,19 +159,19 @@ class App extends Component {
             this.state.currentUser ?
               <Fragment>
                 <div className="navsl">
-                    <a className="logo" href="/" onClick={this.viewHomePageClick}><img style={{height:"50px"}} src="./infinity.svg"/></a>
-                    <p>Welcome to The Coding Network, {this.state.currentUser.username}!</p>
-                    <div>
+                    <a className="logo" href="/" onClick={this.viewHomePageClick}><img style={{height:"50px", margin: "10% 1%"}} src="http://pngimg.com/uploads/infinity_symbol/infinity_symblo_PNG48.png"/></a>
+                    <p style={{margin: "1% 1% 0% 0%"}}>Welcome to The Coding Network, {this.state.currentUser.username}!</p>
+                    <div style={{margin: "1% 0% 0% 0%"}}>
                       <p><a onClick={this.creatingNewPost} href=""><img className="nav-icon" src="./edit.png"/></a>New Post</p>
                     </div>
-                    <div>
+                    <div style={{margin: "1% 0%"}}>
                       <button onClick={this.handleProfileClick} style={{"marginRight":"5px"}}>{this.state.buttonText}</button>
                       <button onClick={this.logout}>Logout</button>
                     </div>
                 </div>
               </Fragment>
               :
-              <div className="navsl"><a className="logo" href="" onClick={this.viewHomePageClick}><img style={{height:"70px"}} src="./infinity.svg"/>The Coding Network</a></div>
+              <div className="navsl"><a className="logo-home" href="" onClick={this.viewHomePageClick}><img style={{height:"50px", marginRight: "5%"}} src="http://pngimg.com/uploads/infinity_symbol/infinity_symblo_PNG48.png"/>The Coding Network</a></div>
           }
         {
           this.state.currentUser ?
