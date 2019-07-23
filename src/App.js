@@ -151,6 +151,7 @@ class App extends Component {
   }
 
   render(){
+    console.log("hello");
     return (
       <div className="App">
         <img className="source-image" src="https://images.unsplash.com/photo-1490826212256-caefa02bc772?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2832&q=80"></img>
